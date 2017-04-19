@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+<title>Hello</title>
+
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script src="scripts/Thing.js"></script>
+<script src="scripts/Player.js"></script>
+<script src="scripts/Enemy.js"></script>
+<script src="scripts/Game.js"></script>
+<script src="scripts/script.js"></script>
+<style>
+    body{
+        background-image: url('https://www.sketchuptextureclub.com/public/texture_m/0047-special-bricks-texture-seamless-bump.jpg');
+    }
+    #restart{
+        border-radius:10px;
+        color:white;
+        background-color:#FF1A44;
+        cursor:pointer;
+        display:none;
+        box-shadow: none;
+    }
+    .btn{
+        background-color: #2ACC66;
+        cursor:pointer;
+    }
+    canvas,div{
+        border-radius:5px;
+        position:absolute;
+        text-align:center;
+        border:2px solid white;
+        font-family: sans-serif;
+        box-shadow: 10px 10px 5px dimgrey;
+        
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select:none;
+    }
+</style>
+</head>
+
+<body>
+<canvas id = "game"></canvas>
+<div id = "left" class= "btn" onmousedown = "moveLeft = true;" onmouseup = "moveLeft = false;" ontouchstart = "moveLeft = true;" ontouchend = "moveLeft = false;">⇐</div>
+<div id = "right" class="btn" onmousedown = "moveRight = true;" onmouseup = "moveRight = false;" ontouchstart = "moveRight = true;" ontouchend = "moveRight = false;">⇒</div>
+<div id = "restart" onclick = "start();">RETRY</div>
+</body>
+</html>
