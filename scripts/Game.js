@@ -83,7 +83,7 @@ class Game{
         console.log(cookie);
         var i  = cookie.indexOf("high_score=");
         if (i >= 0){
-          cookie = cookie.substring(i+10);
+          cookie = cookie.substring(i+11);
           console.log(cookie);
           var j = cookie.indexOf(';');
           if (j > 0) cookie = cookie.substring(0,j);
