@@ -49,12 +49,12 @@ class Game{
     }
     drawScore(){
         this.canvas.fillStyle = "white";
-        this.canvas.fillText("SCORE: "+ Math.ceil(this.score/5) + " ~ HIGH SCORE: " + this.highScore,5,this.fontSize);
+        this.canvas.fillText("SCORE: "+ Math.ceil(this.score) + " ~ HIGH SCORE: " + Math.ceil(this.highScore),5,this.fontSize);
 
     }
     newEnemy(){
         this.enemies[this.enemies.length] = new Enemy(this.screenSize);
-        this.score++;
+        this.score +=(1.0/5);
         this.incrementSpeed();
     }
     incrementSpeed(){
@@ -65,8 +65,8 @@ class Game{
     }
     over(){
       if (this.getHighScore() < this.score){
-        this.saveHighScore(Math.ceil(this.score/5));
-        this.highScore = Math.ceil(this.score/5);
+        this.saveHighScore(this.score);
+        this.highScore =this.score;
         this.drawScore();
       }
       this.enemies = [];
