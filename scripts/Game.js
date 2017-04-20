@@ -4,11 +4,12 @@ class Game{
     constructor(screenSize, canvas){
         this.screenSize = screenSize;
         this.canvas = canvas;
-        this.fontSize = (1.0*screenSize*40/500);
+        this.fontSize = (1.0*screenSize*30/500);
         this.canvas.font = this.fontSize+"px sans-serif";
         this.player = new Player(screenSize);
         this.enemies = [];
         this.score = 0;
+        this.highScore = this.getHighScore();
         this.newEnemy();
     }
     draw(){
@@ -41,15 +42,15 @@ class Game{
         if (cont){
             this.draw();
             return true;
-        } 
+        }
         this.over();
         this.drawScore();
         return false;
     }
     drawScore(){
-        this.canvas.fillStyle = "white"; 
-        this.canvas.fillText("SCORE: "+ Math.ceil(this.score/5),5,this.fontSize);
-        
+        this.canvas.fillStyle = "white";
+        this.canvas.fillText("SCORE: "+ Math.ceil(this.score/5) + " ~ HIGH SCORE: " + this.highScore,5,this.fontSize);
+
     }
     newEnemy(){
         this.enemies[this.enemies.length] = new Enemy(this.screenSize);
@@ -63,8 +64,33 @@ class Game{
         }
     }
     over(){
-        this.enemies = [];
-        this.player.die(this.canvas);
-        this.player = null;
+      if (this.getHighScore() < this.score){
+        this.saveHighScore(Math.ceil(this.score/5));
+        this.highScore = Math.ceil(this.score/5);
+        this.drawScore();
+      }
+      this.enemies = [];
+      this.player.die(this.canvas);
+      this.player = null;
+    }
+    saveHighScore(score){
+      document.cookie = "high_score="+score+";expires=Tue, 19 Jan 2038 03:14:06 UTC;";
+      console.log("Saved: " + document.cookie)
+    }
+    getHighScore(){
+      console.log("Reading: "+document.cookie);
+        var cookie = decodeURIComponent(document.cookie);
+        console.log(cookie);
+        var i  =cookie.indexOf("high_score=");
+        if (i > 0){
+          cookie = cookie.substring(i+10);
+          console.log(cookie);
+          var j = cookie.indexOf(';');
+          if (j > 0) cookie = cookie.substring(0,j);
+          console.log(cookie);
+          cookie  = parseInt(cookie);
+          if (!isNaN(cookie)) return cookie;
+        }
+        return 0;
     }
 }
