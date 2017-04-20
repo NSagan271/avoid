@@ -88,7 +88,7 @@ class Game{
           var j = cookie.indexOf(';');
           if (j > 0) cookie = cookie.substring(0,j);
           console.log(cookie);
-          cookie  = parseInt(cookie);
+          cookie  = parseDouble(cookie);
           if (!isNaN(cookie)) return cookie;
         }
         return 0;
