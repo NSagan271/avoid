@@ -81,8 +81,8 @@ class Game{
       console.log("Reading: "+document.cookie);
         var cookie = decodeURIComponent(document.cookie);
         console.log(cookie);
-        var i  =cookie.indexOf("high_score=");
-        if (i > 0){
+        var i  = cookie.indexOf("high_score=");
+        if (i >= 0){
           cookie = cookie.substring(i+10);
           console.log(cookie);
           var j = cookie.indexOf(';');
